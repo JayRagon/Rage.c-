@@ -133,36 +133,21 @@ namespace VisAssist
 
                     if (GetAsyncKeyState(Keys.T) < 0) // if key t is down AIMBOT KEY HERE
                     {
-                        if (silentAim == 0)
+                        xMove = xAvg - (sWidth / 2);
+                        yMove = yAvg - (sHeight / 2);
+
+                        xMove /= sens;
+                        yMove /= sens;
+
+                        xMove *= 1.07; //fov scaling
+                        yMove *= 1.07; //fov scaling
+
+                        Move((int)xMove, (int)yMove);
+                        Click();
+                        Thread.Sleep(1); //need to wait for click because idk its delayed
+                        
+                        if (silentAim == 1)
                         {
-                            xMove = xAvg - (sWidth / 2);
-                            yMove = yAvg - (sHeight / 2);
-
-                            xMove /= sens;
-                            yMove /= sens;
-
-                            xMove *= 1.07; //fov scaling
-                            yMove *= 1.07; //fov scaling
-
-                            Move((int)xMove, (int)yMove);
-                            Click();
-                            Thread.Sleep(1); //need to wait for click because idk its delayed
-                        }
-                        else
-                        {
-                            //silentAim here (i think this is more detectable but who cares)
-                            xMove = xAvg - (sWidth / 2);
-                            yMove = yAvg - (sHeight / 2);
-
-                            xMove /= sens;
-                            yMove /= sens;
-
-                            xMove *= 1.07; //fov scaling
-                            yMove *= 1.07; //fov scaling
-
-                            Move((int)xMove, (int)yMove);
-                            Click();
-                            Thread.Sleep(1); //need to wait for click because idk its delayed
                             Move((int)-xMove, (int)-yMove); // move bacc to the origional position
                         }
                     }
